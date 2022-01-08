@@ -61,7 +61,16 @@ export default {
     onTouchMoving(touchEvent) {
       let result = this.touchEventRouter.onTouchMoving(touchEvent);
       if (result.wheelChangeDegrees) {
-        this.wheelRotation += result.wheelChangeDegrees;
+        if (this.horizontalDegrees <= 0 && result.wheelChangeDegrees < 0) {
+          this.wheelRotation = 0;
+        } else if (
+          this.horizontalDegrees >= 180 &&
+          result.wheelChangeDegrees > 0
+        ) {
+          this.wheelRotation = 360 * 5;
+        } else {
+          this.wheelRotation += result.wheelChangeDegrees;
+        }
       }
       if (result.sliderTranslation) {
         this.sliderTranslation = result.sliderTranslation;
