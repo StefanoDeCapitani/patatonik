@@ -5,37 +5,21 @@
       src="../assets/wheel-background.svg"
       alt=""
     />
-    <div
-      class="wheel__rotatable"
-      v-touch:start="onTouchStart"
-      v-touch:moving="onTouchMoving"
-    >
-      <img ref="rotatable" src="../assets/wheel.svg" alt="" />
+    <div class="wheel__rotatable">
+      <img ref="rotatable" class="rotatable" src="../assets/wheel.svg" alt="" />
     </div>
   </div>
 </template>
 
 <script>
-import TouchEventController from "../TouchEventController";
-
 export default {
   name: "Wheel",
-  data() {
-    return {
-      touchController: null,
-      rotation: 0,
-    };
+  props: {
+    rotation: Number,
   },
-  mounted() {
-    this.touchController = new TouchEventController(this.$refs.rotatable);
-  },
-  methods: {
-    onTouchStart(touchEvent) {
-      this.touchController.setInitialOffsetAngle(touchEvent);
-    },
-    onTouchMoving(touchEvent) {
-      this.rotation += this.touchController.getDegreeChange(touchEvent);
-      this.$refs.rotatable.style.transform = "rotate(" + this.rotation + "deg)";
+  watch: {
+    rotation: function (rotation) {
+      this.$refs.rotatable.style.transform = "rotate(" + rotation + "deg)";
     },
   },
 };

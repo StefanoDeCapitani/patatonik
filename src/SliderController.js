@@ -1,7 +1,4 @@
-export default class TouchEventController {
-  oldDegrees = 0;
-  degrees = 0;
-
+export default class SliderController {
   constructor(el) {
     this.element = el.parentElement;
     this.center = this.calcCenter();
@@ -24,22 +21,13 @@ export default class TouchEventController {
     };
   }
 
-  setInitialOffsetAngle(touchEvent) {
-    this.oldDegrees = this.getDegrees(touchEvent);
-  }
-
-  getDegreeChange(touchEvent) {
-    this.degrees = this.getDegrees(touchEvent);
-
-    let deltaDegrees = this.getDeltaDegrees();
-
-    this.oldDegrees = this.degrees;
-    return deltaDegrees;
-  }
-
-  getYPositionCange(touchEvent) {
+  getYPositionChange(touchEvent) {
     let relativePosition = this.getYDistanceFromCenter(touchEvent) / 2;
     return this.getYTranslation(relativePosition);
+  }
+
+  getYDistanceFromCenter(touchEvent) {
+    return touchEvent.clientY - this.center.Y;
   }
 
   getYTranslation(relativePosition) {
@@ -56,27 +44,5 @@ export default class TouchEventController {
     }
 
     return Ytranslation;
-  }
-
-  getYDistanceFromCenter(touchEvent) {
-    return touchEvent.changedTouches[0].clientY - this.center.Y;
-  }
-
-  getDegrees(touchEvent) {
-    let deltaY = this.center.Y - touchEvent.changedTouches[0].clientY;
-    let deltaX = this.center.X - touchEvent.changedTouches[0].clientX;
-    return Math.atan2(deltaY, deltaX) * (180 / Math.PI) + 180;
-  }
-
-  getDeltaDegrees() {
-    if (this.degrees - this.oldDegrees > -200) {
-      if (this.degrees - this.oldDegrees < 200) {
-        return this.degrees - this.oldDegrees;
-      } else {
-        return this.degrees - (this.oldDegrees + 360);
-      }
-    } else {
-      return this.degrees + 360 - this.oldDegrees;
-    }
   }
 }

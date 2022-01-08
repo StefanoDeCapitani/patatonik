@@ -1,38 +1,21 @@
 <template>
   <div class="slider">
     <img class="slider__track" src="../assets/slider-track.svg" />
-    <div
-      class="slider__knob"
-      ref="slidable"
-      v-touch:moving="onTouchMoving"
-      v-touch:end="onTouchEnd"
-    >
+    <div class="slider__knob" ref="slidable">
       <img src="../assets/slider-knob.svg" alt="" />
     </div>
   </div>
 </template>
 
 <script>
-import TouchEventController from "../TouchEventController";
-
 export default {
   name: "Slider",
-  data() {
-    return { touchController: null, translation: 0 };
+  props: {
+    translation: Number,
   },
-  mounted() {
-    this.touchController = new TouchEventController(this.$refs.slidable);
-  },
-  methods: {
-    onTouchMoving(touchEvent) {
-      this.translation = this.touchController.getYPositionCange(touchEvent);
-      this.$refs.slidable.style.transform =
-        "translateY(" + this.translation + "px)";
-    },
-    onTouchEnd() {
-      this.translation = 0;
-      this.$refs.slidable.style.transform =
-        "translateY(" + this.translation + "%)";
+  watch: {
+    translation: function (translation) {
+      this.$refs.slidable.style.transform = "translateY(" + translation + "%)";
     },
   },
 };
