@@ -99,21 +99,8 @@ body {
   font-family: "Sigmar One", cursive;
   height: 100vh;
   width: 100vw;
-  background-image: url("assets/X-3.png");
+  background-image: url("assets/background-patatonik.png");
   background-size: cover;
   background-position: center;
-}
-
-@media screen and (min-width: 250px) and (max-width: 1100px) and (orientation: portrait) {
-  #app {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
 }
 </style>
