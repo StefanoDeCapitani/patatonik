@@ -5,8 +5,7 @@ module.exports = {
     manifestOptions: {
       name: "Patatonik",
       short_name: "Patatonik",
-      start_url:
-        "https://stefanodecapitani.github.io/patatonik/connection-page",
+      start_url: "./",
       display: "fullscreen",
       orientation: "landscape",
       theme_color: "#2e5eaa",
