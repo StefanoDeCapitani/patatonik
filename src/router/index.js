@@ -8,13 +8,17 @@ import { mobileCheck, isStandalone } from "./MobileCheck";
 
 Vue.use(VueRouter);
 
+mobileCheck();
+isStandalone();
+
 const routes = [
   {
     path: "/",
     name: "ConnectionPage",
     component: ConnectionPage,
     beforeEnter: (to, from, next) => {
-      if ((mobileCheck(), isStandalone())) {
+      let x = true;
+      if (x) {
         next();
       } else {
         next("/add-to-home");
