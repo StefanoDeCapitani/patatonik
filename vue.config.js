@@ -5,8 +5,8 @@ module.exports = {
     manifestOptions: {
       name: "Patatonik",
       short_name: "Patatonik",
-      start_url: "./",
-      display: "standalone",
+      start_url: "./connection-page",
+      display: "fullscreen",
       orientation: "landscape",
       theme_color: "#2e5eaa",
       background_color: "#00a878",
