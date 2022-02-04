@@ -8,17 +8,13 @@ import { mobileCheck, isStandalone } from "./MobileCheck";
 
 Vue.use(VueRouter);
 
-mobileCheck();
-isStandalone();
-
 const routes = [
   {
     path: "/",
     name: "ConnectionPage",
     component: ConnectionPage,
     beforeEnter: (to, from, next) => {
-      let x = true;
-      if (x) {
+      if (mobileCheck() && isStandalone()) {
         next();
       } else {
         next("/add-to-home");
@@ -30,10 +26,10 @@ const routes = [
     name: "MotionControllerPage",
     component: MotionControllerPage,
     beforeEnter: (to, from, next) => {
-      if (navigator.userAgentData.mobile) {
+      if (mobileCheck() && isStandalone()) {
         next();
       } else {
-        next("/desktop");
+        next("/add-to-home");
       }
     },
   },
@@ -55,7 +51,7 @@ const routes = [
     component: DesktopPage,
     beforeEnter: (to, from, next) => {
       if (mobileCheck()) {
-        next("/");
+        next("/add-to-page");
       } else {
         next();
       }

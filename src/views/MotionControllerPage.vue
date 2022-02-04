@@ -92,6 +92,7 @@ export default {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  background-color: #00a879;
   background-image: url("../assets/background-patatonik.png");
   background-size: cover;
   background-position: center;
