@@ -3,20 +3,21 @@ import VueRouter from "vue-router";
 import ConnectionPage from "../views/ConnectionPage";
 import MotionControllerPage from "../views/MotionControllerPage";
 import BrowserPage from "../views/BrowserPage";
+import DesktopPage from "../views/DesktopPage";
 import { mobileCheck, isStandalone } from "./MobileCheck";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/connection-page",
+    path: "/",
     name: "ConnectionPage",
     component: ConnectionPage,
     beforeEnter: (to, from, next) => {
       if ((mobileCheck(), isStandalone())) {
         next();
       } else {
-        next("/");
+        next("/add-to-home");
       }
     },
   },
@@ -33,16 +34,28 @@ const routes = [
     },
   },
   {
-    path: "/",
+    path: "/add-to-home",
     name: "BrowserPage",
     component: BrowserPage,
-    /*     beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
+      if (mobileCheck()) {
+        next();
+      } else {
+        next("/desktop");
+      }
+    },
+  },
+  {
+    path: "/desktop",
+    name: "DesktopPage",
+    component: DesktopPage,
+    beforeEnter: (to, from, next) => {
       if (mobileCheck()) {
         next("/");
       } else {
         next();
       }
-    }, */
+    },
   },
 ];
 
