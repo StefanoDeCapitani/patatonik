@@ -14,11 +14,25 @@ export function mobileCheck() {
   });
 }
 
-export function isStandalone() {
+/* export function isStandalone() {
   const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
   if (document.referrer.startsWith("android-app://")) {
     return true;
   } else if (navigator.standalone || isStandalone) {
+    return true;
+  }
+  return false;
+} */
+
+export function isFullScreen() {
+  const isFullScreen = window.matchMedia("(display-mode: fullscreen)").matches;
+  if (document.referrer.startsWith("android-app://")) {
+    return true;
+  } else if (
+    document.webkitfullscreenelement ||
+    document.fullscreenelement ||
+    isFullScreen
+  ) {
     return true;
   }
   return false;

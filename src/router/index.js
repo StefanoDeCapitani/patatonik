@@ -4,7 +4,7 @@ import ConnectionPage from "../views/ConnectionPage";
 import MotionControllerPage from "../views/MotionControllerPage";
 import BrowserPage from "../views/BrowserPage";
 import DesktopPage from "../views/DesktopPage";
-import { mobileCheck, isStandalone } from "./MobileCheck";
+import { mobileCheck, isFullScreen } from "./MobileCheck";
 
 Vue.use(VueRouter);
 
@@ -14,7 +14,7 @@ const routes = [
     name: "ConnectionPage",
     component: ConnectionPage,
     beforeEnter: (to, from, next) => {
-      if (mobileCheck() && isStandalone()) {
+      if (mobileCheck() && isFullScreen()) {
         next();
       } else {
         next("/add-to-home");
@@ -26,7 +26,7 @@ const routes = [
     name: "MotionControllerPage",
     component: MotionControllerPage,
     beforeEnter: (to, from, next) => {
-      if (mobileCheck() && isStandalone()) {
+      if (mobileCheck() && isFullScreen()) {
         next();
       } else {
         next("/add-to-home");
