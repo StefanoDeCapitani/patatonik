@@ -25,11 +25,10 @@
           cannone per palline di mais stampato in 3D.
           <br />
           <span class="small">
-            Se sei interessato a replicare il progetto, presto saranno
+            Per chi fosse interessato a replicare il progetto, presto saranno
             disponibili il modello stampabile del cannone e la documentazione
-            <br />
             necessaria per comprendere il funzionamento del codice, il quale è
-            già disponibile nella mia repository di Github.
+            già disponibile nella repository di Github.
           </span>
         </p>
       </div>
@@ -50,6 +49,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 }
 
@@ -65,7 +65,7 @@ export default {
     max-width: 1080px;
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     .brand {
       cursor: pointer;
       .logo {
@@ -110,6 +110,8 @@ export default {
     .title {
       margin: auto;
       padding-top: 2rem;
+      line-height: 2.2rem;
+      text-align: center;
       color: #ffe74c;
       -webkit-text-stroke: 1px #3f74ca;
       text-shadow: 3px 3px 0 #3f74ca, -1px -1px 0 #3f74ca, 1px -1px 0 #3f74ca,
@@ -132,9 +134,14 @@ export default {
         sans-serif;
       font-size: 0.6rem;
       line-height: 0.6rem;
+      max-width: 550px;
+      margin: auto;
       margin-top: 4rem;
       color: #ffe74c;
       text-shadow: 0px 0px 18px rgba(0, 0, 0, 0.25);
+      background-color: #ff5964;
+      border-radius: 1.5rem;
+      padding: 0.5rem 1.5rem;
     }
   }
   .attribution {
