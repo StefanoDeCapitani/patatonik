@@ -1,13 +1,29 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view @install="installPWA" />
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      deferredPrompt: null,
+    };
+  },
+  created() {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault;
+      this.deferredPrompt = e;
+    });
+    window.addEventListener("appinstalled", () => {
+      this.deferredPrompt = null;
+    });
+  },
+  methods: {
+    installPWA() {
+      this.deferredPrompt.prompt();
+    },
   },
 };
 </script>

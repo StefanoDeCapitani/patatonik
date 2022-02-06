@@ -6,7 +6,7 @@
     <h1 class="text">
       Fai click su "installa" per aggiungere l'app alla schermata Home
     </h1>
-    <button class="btn btn--danger" @click="tryConnecting">
+    <button class="btn btn--danger" @click="$emit('install')">
       In<span class="text-red">stalla</span>
     </button>
   </div>
@@ -15,18 +15,6 @@
 <script>
 export default {
   name: "BrowserPage",
-  data() {
-    return {
-      deferredPrompt: null,
-    };
-  },
-  muonted() {
-    window.addEventListener("beforeinstallprompt", function (e) {
-      e.preventDefault;
-      this.deferredPrompt = e;
-      alert(`'beforeinstallprompt' event was fired.`);
-    });
-  },
 };
 </script>
 
@@ -44,6 +32,7 @@ export default {
 
 .brand {
   width: 100%;
+  max-width: 500px;
   background-image: url("../assets/pallina-di-palline-di-mais.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -59,7 +48,8 @@ export default {
   font-size: 1.1rem;
   text-align: center;
   margin-top: auto;
-  text-shadow: -11px 0px 18px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px 0px 18px rgba(0, 0, 0, 0.25);
+  padding-top: 3rem;
 }
 
 .btn {
